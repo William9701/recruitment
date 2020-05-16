@@ -1,0 +1,21 @@
+Option 1:
+
+docker build -t ihopeit/jenkins-dod:1.0 .
+
+mkdir -p /var/jenkins_home
+
+docker run -it -u root -p 8900:8080 -p 50000:50000 \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /var/jenkins_home:/var/jenkins_home \
+--name jenkins ihopeit/jenkins-dod:1.0
+
+
+docker container commit jenkins ihopeit/jenkins-dod:1.1
+docker tag ihopeit/jenkins-dod:1.1 registry.cn-beijing.aliyuncs.com/ihopeit/jenkins-dod:1.1
+docker push registry.cn-beijing.aliyuncs.com/ihopeit/jenkins-dod:1.1
+
+After initialization is complete, deploy to k8s:
+kubectl apply -f jenkins-service.yaml
+kubectl apply -f jenkins-deployment.yaml
+
+Jenkins startup log will automatically generate the initialization admin password, which can be used to log in.
