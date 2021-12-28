@@ -1,0 +1,30 @@
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<h1>Resume Details </h1>
+
+<div> Name: {{ object.username }} </div> <div>City: {{ object.city }}</div> <div>Phone Number: {{ object.phone }}</div>
+
+<p></p>
+<div>Email Address: {{ object.email}}</div>
+<div>Applied Position: {{ object.apply_position}}</div>
+<div>Birthplace: {{ object.born_address}}</div>
+<div>Gender: {{ object.gender}}</div>
+<hr>
+
+<div>Bachelor School: {{ object.bachelor_school}}</div>
+<div>Master School: {{ object.master_school}}</div>
+<div>Major: {{ object.major}}</div>
+<div>Degree: {{ object.degree}}</div>
+<hr>
+
+<p>Candidate Introduction: {{ object.candidate_introduction}}</p>
+<p>Work Experience: {{ object.work_experience}}</p>
+<p>Project Experience: {{ object.project_experience}}</p>
